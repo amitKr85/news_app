@@ -56,16 +56,18 @@ class App extends React.Component {
     loadData = (data, type = "category") => {
 
         this.setState({ state: "loading", category: data });
-        fetch(getUrl(data, type))
-            .then(res => res.json())
-            .then(json => {
-                console.log(json);
-                this.setState({ state: "loaded", data: json });
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({ state: "failed" });
-            });
+        fetch("http://ec2-18-222-83-136.us-east-2.compute.amazonaws.com:4500/").then(res => console.log(res));
+        setTimeout(() => this.setState({ state: "loaded" }), 5000);
+        // fetch(getUrl(data, type))
+        //     .then(res => res.json())
+        //     .then(json => {
+        //         console.log(json);
+        //         this.setState({ state: "loaded", data: json });
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //         this.setState({ state: "failed" });
+        //     });
     }
 
 
@@ -73,7 +75,7 @@ class App extends React.Component {
         let comp;
         switch (this.state.state) {
             case "loading": comp = <div>Loading ...</div>; break;
-            case "loaded": comp = <div>{<Page data={this.state.data} />}</div>; break;
+            case "loaded": comp = <div>{/*<Page data={this.state.data} />*/}Hello</div>; break;
             case "failed": comp = <div>Failed</div>; break;
         }
 
